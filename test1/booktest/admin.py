@@ -17,6 +17,6 @@ class BookInfoAdmin(admin.ModelAdmin):
     inlines = [HeroInfoInline]
 
 
-
 admin.site.register(BookInfo,BookInfoAdmin)
 admin.site.register(HeroInfo)
+

@@ -15,3 +15,4 @@ def show(request,id):
     herolist=book.heroinfo_set.all()
     context={'list':herolist}
     return render(request,'booktest/show.html',context)
+

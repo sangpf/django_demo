@@ -5,12 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-<ul>
-{% for book in list1 %}
-<li>{{ book.btitle }}--{{ book.bread }}--{{ book.bcommet }}</li>
-{% endfor %}
-</ul>
-<hr>
-{{ Max1 }}
+    <ul>
+        {% for book in list1 %}
+           <li>{{book.pk}} -- {{ book.btitle }} -- {{ book.bread }} -- {{ book.bcommet }} -- {{ book.bpub_date}}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    {{ Max1 }}
+    <hr>
+    {{ Min1 }}
 </body>
 </html>

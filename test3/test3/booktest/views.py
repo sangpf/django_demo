@@ -1,11 +1,11 @@
 #coding=utf-8
-
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
+from django.http import JsonResponse
 
 def index(request):
     return HttpResponse(request.path)
-	
+
 def detail(request,p1,p2,p3):
     return HttpResponse('year:%s,month:%s,day:%s'%(p1,p2,p3))
 
@@ -32,7 +32,8 @@ def getTest3(request):
 
 def postTest1(request):
     return render(request,'booktest/postTest1.html')
-	
+
+# 接收post请求表单提交
 def postTest2(request):
     uname=request.POST['uname']
     upwd=request.POST['upwd']
@@ -44,18 +45,25 @@ def postTest2(request):
 #cookie练习
 def cookieTest(request):
     response = HttpResponse()
-    cookie=request.COOKIES
-    if cookie.has_key('t1'):
-        response.write(cookie['t1'])
-    # response.set_cookie('t1','abc')
+    if request.COOKIES.has_key('h1'):
+        response.write('<h1>' + request.COOKIES['h1'] + '</h1>')
+    response.set_cookie('h1', '你好吗，哈哈哈', 120)
+    # response.set_cookie('h1', '你好', None, datetime(2016, 10, 31))
     return response
+
 
 #转向练习
 def redTest1(request):
-    # return HttpResponseRedirect('/booktest/redTest2/')
-    return redirect('/booktest/redTest2/')
+    return HttpResponseRedirect('/booktest/redTest2/')
+    # return redirect('/booktest/redTest2/')
 def redTest2(request):
     return HttpResponse('这是转向来的页面')
+
+
+#返回json数据
+def jsonTest(request):
+    return JsonResponse({'list': 'abc'})
+
 
 #通过用户登录练习session
 def session1(request):
@@ -73,7 +81,5 @@ def session3(request):
     #删除session
     del request.session['myname']
     return redirect('/booktest/session1/')
-
-
 
 

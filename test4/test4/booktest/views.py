@@ -7,10 +7,10 @@ from models import *
 def index(request):
     # hero=HeroInfo.objects.get(pk=1)
     # context={'hero':hero}
-
     list=HeroInfo.objects.filter(isDelete=False)
     context={'list':list}
     return render(request,'booktest/index.html',context)
+
 def show(request,id,id2):
     context={'id':id}
     return render(request,'booktest/show.html',context)
@@ -69,8 +69,10 @@ def verifyCode(request):
     image.save(buf,'png')
     #将内存流中的内容输出到客户端
     return  HttpResponse(buf.getvalue(),'image/png')
+
 def verifyTest1(request):
     return render(request,'booktest/verifyTest1.html')
+
 def verifyTest2(request):
     code1=request.POST['code1']
     code2=request.session['code']
